@@ -4,6 +4,7 @@ import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import HomeScreen from './screens/HomeScreen';
 import ReminderSetup from './screens/ReminderSetup';
+import ReminderScreen from './screens/ReminderScreen';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -46,6 +47,8 @@ const styles = StyleSheet.create({
 const MainNavigator = createStackNavigator({
   Home: {screen: HomeScreen},
   Profile: {screen: ReminderSetup},
+  Reminder: {screen: ReminderScreen}
+  
 });
 
 const App = createAppContainer(MainNavigator);

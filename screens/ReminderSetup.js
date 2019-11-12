@@ -51,6 +51,10 @@ export default class ProfileScreen extends React.Component {
           <Picker.Item label="Exercise" value="exercise" />
           <Picker.Item label="Free Time" value="free_time" />
         </Picker>
+        <Button
+        title="Set Reminder"
+        onPress={() => navigate('Reminder', {name: 'Jane'})}
+      />
       </View>
     );
   }

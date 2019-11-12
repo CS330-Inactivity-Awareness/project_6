@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View, Button } from 'react-native';
-export default class HomeScreen extends React.Component {
+export default class ReminderScreen extends React.Component {
   
   static navigationOptions = {
     title: 'Welcome',
@@ -10,8 +10,8 @@ export default class HomeScreen extends React.Component {
     const {navigate} = this.props.navigation;
     return (
       <Button
-        title="Create a Reminder"
-        onPress={() => navigate('Profile', {name: 'Jane'})}
+        title="Stop Reminder"
+        onPress={() => navigate('Home', {name: 'Jane'})}
       />
     );
   }
