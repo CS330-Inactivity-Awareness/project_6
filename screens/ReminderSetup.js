@@ -25,9 +25,10 @@ export default class ProfileScreen extends React.Component {
       <View>
         <Text>
           Work Period Length (minutes)
+          
         </Text>
         <TextInput
-          style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+          style={{ height: 40, borderColor: 'gray', borderWidth: 1, width: 100}}
           onChangeText={text => this.onChangeWorkingPeriod(text)}
           value={this.state.work_period}>
         </TextInput>
@@ -35,7 +36,7 @@ export default class ProfileScreen extends React.Component {
           Break Length (minutes)
         </Text>
         <TextInput
-          style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+          style={{ height: 40, borderColor: 'gray', borderWidth: 1, width:100 }}
           onChangeText={text => this.onChangeBreakPeriod(text)}
           value={this.state.break_period}>
         </TextInput>
@@ -44,7 +45,7 @@ export default class ProfileScreen extends React.Component {
         </Text>
         <Picker
           selectedValue={this.state.btype}
-          style={{height: 50, width: 100}}
+          style={{height: 50, width: 100 }}
           onValueChange={(itemValue, itemIndex) =>
             this.setState({btype: itemValue})
           }>
@@ -59,3 +60,4 @@ export default class ProfileScreen extends React.Component {
     );
   }
 }
+
