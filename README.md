@@ -7,7 +7,7 @@ git clone https://github.com/CS330-Inactivity-Awareness/project_6.git
 
 ## Install nodejs
 
-Download and install node from [here](https://nodejs.org/en/download/) (This will also install npm)
+Download and install node v8.11.3 from [here](https://nodejs.org/ca/blog/release/v8.11.3/) (This will also install npm)
 
 
 ## Installing necessary node packages
