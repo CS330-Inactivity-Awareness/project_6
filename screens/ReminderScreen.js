@@ -1,23 +1,59 @@
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View, Button } from 'react-native';
+import { Audio } from 'expo-av';
 export default class ReminderScreen extends React.Component {
   
   constructor(props){
     super(props);
-    this.state = {time_left: props.navigation.state.params.work_period * 60, full_time: props.navigation.state.params.work_period * 60}
+    this.state = {
+      time_left: props.navigation.state.params.work_period * 60,
+      full_time: props.navigation.state.params.work_period * 60, 
+      full_break: props.navigation.state.params.break_period * 60,  
+      work_mode: true
+    }
     this.subtract_one = this.subtract_one.bind(this);
   }
   static navigationOptions = {
     headerLeft: null
   };
 
-  componentDidMount(){
+  async componentWillMount() {
     setInterval(this.subtract_one, 1000)
+    this.backgroundMusic = new Audio.Sound();
+    this.buttonFX = new Audio.Sound();
+    try {
+      await this.buttonFX.loadAsync(
+        require("../sounds/bell.wav")
+      );
+    } catch(e){
+      1+1;
+    }
+  }
+
+  title_text(mode){
+     if (mode == true){
+        return "Get to work";
+     }
+     return "Do 10 jumping jacks!";
   }
 
   subtract_one(){
-    time_left = this.state.time_left - 1;
-    this.setState({time_left: time_left});
+    if (this.state.time_left == 1){
+	    this.buttonFX.replayAsync();
+    }
+    if (this.state.time_left == 0){
+      if (this.state.work_mode == true){
+        this.setState({time_left: this.state.full_break, work_mode: false});
+      }
+      else{
+        this.setState({time_left: this.state.full_time, work_mode: true});
+      }
+    }
+    else{
+      time_left = this.state.time_left - 1;
+      this.setState({time_left: time_left});
+    }
+    
   }
 
   seconds_to_hms(seconds){
@@ -32,6 +68,9 @@ export default class ReminderScreen extends React.Component {
     const { navigation } = this.props;
     return (
       <View>
+	<Text>
+	    {this.title_text(this.state.work_mode)}
+	</Text>
         <Text>
           {this.seconds_to_hms(this.state.time_left)}
         </Text>
