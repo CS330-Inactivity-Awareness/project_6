@@ -7,7 +7,7 @@ export default class ProfileScreen extends React.Component {
     this.onChangeWorkingPeriod = this.onChangeWorkingPeriod.bind(this);
     this.onChangeBreakPeriod = this.onChangeBreakPeriod.bind(this);
   }
-  
+
   onChangeWorkingPeriod(text){
     this.setState({work_period: text});
   }
@@ -15,7 +15,7 @@ export default class ProfileScreen extends React.Component {
   onChangeBreakPeriod(text){
     this.setState({break_period: text});
   }
-  
+
   static navigationOptions = {
     title: 'Welcome',
   };
@@ -23,39 +23,68 @@ export default class ProfileScreen extends React.Component {
     const {navigate} = this.props.navigation;
     return (
       <View>
-        <Text>
-          Work Period Length (minutes)
+        <Text style = {styles.work_period}>
+          Work Period Length (minutes):
         </Text>
         <TextInput
-          style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+          style={styles.type_box}
           onChangeText={text => this.onChangeWorkingPeriod(text)}
           value={this.state.work_period}>
         </TextInput>
-        <Text>
-          Break Length (minutes)
+        <Text style = {styles.work_period}>
+          Break Length (minutes):
         </Text>
         <TextInput
-          style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+          style={ styles.type_box  }
           onChangeText={text => this.onChangeBreakPeriod(text)}
           value={this.state.break_period}>
         </TextInput>
-        <Text>
-          Break Type
+        <Text style = {styles.work_period}>
+          Break Type:
         </Text>
         <Picker
           selectedValue={this.state.btype}
-          style={{height: 50, width: 100}}
+          style={{height: 50, width: 100, left: 30, }}
           onValueChange={(itemValue, itemIndex) =>
             this.setState({btype: itemValue})
           }>
           <Picker.Item label="Exercise" value="exercise" />
+          <Picker.Item label="Stretch" value="strech" />
           <Picker.Item label="Free Time" value="free_time" />
         </Picker>
         <Button
         title="Set Reminder"
         onPress={() => navigate('Reminder', {name: 'Jane', work_period: this.state.work_period, break_period: this.state.break_period})}
+        style = {styles.button}
       />
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  work_period: {
+    margin: 5,
+    fontSize: 16,
+    left: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  type_box: {
+     height: 40,
+     borderColor: 'gray',
+     borderWidth: 1,
+     width:150,
+     left: 30,
+     marginBottom: 20
+  },
+  button: {
+    textAlign: 'center',
+    color: '#333333',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 150,
+    height: 50,
+    top: 50,
+  },
+});
