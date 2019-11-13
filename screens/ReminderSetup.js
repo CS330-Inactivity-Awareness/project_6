@@ -3,7 +3,7 @@ import { Platform, StyleSheet, Text, View, Button, Picker, TextInput } from 'rea
 export default class ProfileScreen extends React.Component {
   constructor(props){
     super(props);
-    this.state = {btype: "exercise", work_period: (30).toString(), break_period: (1).toString()};
+    this.state = {btype: "exercise", work_period: (1).toString(), break_period: (1).toString()};
     this.onChangeWorkingPeriod = this.onChangeWorkingPeriod.bind(this);
     this.onChangeBreakPeriod = this.onChangeBreakPeriod.bind(this);
   }
@@ -53,7 +53,7 @@ export default class ProfileScreen extends React.Component {
         </Picker>
         <Button
         title="Set Reminder"
-        onPress={() => navigate('Reminder', {name: 'Jane'})}
+        onPress={() => navigate('Reminder', {name: 'Jane', work_period: this.state.work_period})}
       />
       </View>
     );
