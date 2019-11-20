@@ -13,7 +13,6 @@ export default class HomeScreen extends React.Component {
         title="Create a Reminder"
         onPress={() => navigate('Profile', {name: 'Jane'})}
       />
-
     );
   }
 }
