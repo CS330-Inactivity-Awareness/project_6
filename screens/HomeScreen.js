@@ -9,10 +9,13 @@ export default class HomeScreen extends React.Component {
   render() {
     const {navigate} = this.props.navigation;
     return (
-      <Button
+      <View style = {styles.button_view}>
+      <Button style = {styles.button}
         title="Create a Reminder"
         onPress={() => navigate('Profile', {name: 'Jane'})}
+        color = "#4444f0"
       />
+      </View>
 
     );
   }
@@ -61,7 +64,8 @@ const styles = StyleSheet.create({
   button: {
     textAlign: 'center',
     color: '#4444f0',
-    height: '100%'
+    height: '100%',
+    width: '80%'
   },
 
   input_row: {

@@ -20,7 +20,7 @@ export default class ProfileScreen extends React.Component {
     title: 'Reminder Creation',
     headerStyle: {
       backgroundColor: '#4444f0',
-      
+
     },
     headerTintColor: '#fff'
   };
@@ -28,7 +28,7 @@ export default class ProfileScreen extends React.Component {
   render() {
     const {navigate} = this.props.navigation;
     return (
-      <TouchableWithoutFeedback onPress={()=> Keyboard.dismiss()}> 
+      <TouchableWithoutFeedback onPress={()=> Keyboard.dismiss()}>
       <View style = {styles.container}>
 
         <View style={styles.input_row}>
@@ -43,7 +43,7 @@ export default class ProfileScreen extends React.Component {
             keyboardType='numeric'>
           </TextInput>
         </View>
-        
+
         <View style={styles.input_row}>
           <Text style = {styles.input_text}>
             Break Length (minutes)
@@ -71,6 +71,21 @@ export default class ProfileScreen extends React.Component {
             <Picker.Item label="Stretch" value="strech" />
             <Picker.Item label="Free Time" value="free_time" />
           </Picker>
+          </View>
+          <View style={styles.input_row}>
+            <Text style = {styles.input_text}>
+              Reminder Sound
+            </Text>
+          <Picker
+          selectedValue={this.state.btype}
+          style={{height: 80, width: '80%', flex: 1, borderColor: 'gray', borderWidth: 1}}
+          onValueChange={(itemValue, itemIndex) =>
+            this.setState({btype: itemValue})
+          }>
+          <Picker.Item label="Bell" value="bell" />
+          <Picker.Item label="Buzzer" value="Buzzer" />
+          <Picker.Item label="Dream" value="dream" />
+        </Picker>
         </View>
         <View style={styles.button_view}>
           <Button
@@ -92,7 +107,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-evenly'
   },
-  
+
   input_text: {
     flex: 1,
     textAlign: 'left',

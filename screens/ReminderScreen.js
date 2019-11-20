@@ -36,9 +36,9 @@ export default class ReminderScreen extends React.Component {
 
   title_text(mode){
      if (mode == true){
-        return "Get to work";
+        return "Work Time!";
      }
-     return "Do 10 jumping jacks!";
+     return "Do 10 Jumping Jacks!";
   }
 
   subtract_one(){
@@ -67,21 +67,31 @@ export default class ReminderScreen extends React.Component {
 
   }
 
+  static navigationOptions = {
+    title: '',
+    headerStyle: {
+      backgroundColor: '#4444f0',
+
+    },
+    headerTintColor: '#fff'
+  };
+
   render() {
     const {navigate} = this.props.navigation;
     const { navigation } = this.props;
     return (
-      <View style = {styles.welcome}>
-	<Text style = {styles.welcome}>
-	    {this.title_text(this.state.work_mode)}
-	</Text>
-        <Text>
-          {this.seconds_to_hms(this.state.time_left)}
-        </Text>
+      <View style = {styles.container}>
+	       <Text style = {styles.welcome}>
+	         {this.title_text(this.state.work_mode)}
+	       </Text>
+              <Text style = {styles.countdown}>
+                {this.seconds_to_hms(this.state.time_left)}
+              </Text>
         <Button
           title="Cancel Reminder"
           onPress={() => navigate('Home', {name: 'Jane'})}
           style = {styles.button}
+          color = "#4444f0"
         />
       </View>
     );
@@ -96,9 +106,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
   },
   welcome: {
-    fontSize: 20,
+    fontSize: 30,
     textAlign: 'center',
     margin: 10,
+  },
+  countdown: {
+    fontSize: 50,
+    textAlign: 'center',
+  
   },
   instructions: {
     textAlign: 'center',
@@ -116,7 +131,6 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     fontSize: 20,
   },
-
 
   type_box: {
      borderColor: 'gray',
