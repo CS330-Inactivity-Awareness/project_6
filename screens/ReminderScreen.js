@@ -18,7 +18,7 @@ export default class ReminderScreen extends React.Component {
   };
 
   async componentWillMount() {
-    setInterval(this.subtract_one, 1000)
+    this.subtractor = setInterval(this.subtract_one, 1000);
     this.backgroundMusic = new Audio.Sound();
     this.buttonFX = new Audio.Sound();
     try {
@@ -28,6 +28,10 @@ export default class ReminderScreen extends React.Component {
     } catch(e){
       1+1;
     }
+  }
+
+  componentWillUnmount(){
+    clearInterval(this.subtractor);
   }
 
   title_text(mode){
