@@ -36,9 +36,15 @@ export default class ReminderScreen extends React.Component {
 
   title_text(mode){
      if (mode == true){
+<<<<<<< HEAD
         return "Work Time!";
      }
      return "Do 10 Jumping Jacks!";
+=======
+        return "Work Time";
+     }
+     return "Break Time: Do 10 jumping jacks!";
+>>>>>>> a95ccf7c429aa73236c4a6d09489092083db87d1
   }
 
   subtract_one(){

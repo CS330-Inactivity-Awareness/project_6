@@ -15,8 +15,11 @@ export default class HomeScreen extends React.Component {
         onPress={() => navigate('Profile', {name: 'Jane'})}
         color = "#4444f0"
       />
+<<<<<<< HEAD
       </View>
 
+=======
+>>>>>>> a95ccf7c429aa73236c4a6d09489092083db87d1
     );
   }
 }

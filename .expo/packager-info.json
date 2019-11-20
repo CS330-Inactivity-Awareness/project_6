@@ -2,8 +2,16 @@
   "devToolsPort": 19002,
   "expoServerPort": 19000,
   "packagerPort": 19001,
+<<<<<<< HEAD
   "packagerPid": 8164,
   "expoServerNgrokUrl": "https://y4-ep7.anonymous.project-6.exp.direct",
   "packagerNgrokUrl": "https://packager.y4-ep7.anonymous.project-6.exp.direct",
   "ngrokPid": 7896
 }
+=======
+  "packagerPid": 7916,
+  "expoServerNgrokUrl": "https://qj-6dg.anonymous.project-6.exp.direct",
+  "packagerNgrokUrl": "https://packager.qj-6dg.anonymous.project-6.exp.direct",
+  "ngrokPid": 9424
+}
+>>>>>>> a95ccf7c429aa73236c4a6d09489092083db87d1
