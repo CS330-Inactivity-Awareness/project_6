@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View, Button } from 'react-native';
 import { Audio } from 'expo-av';
 export default class ReminderScreen extends React.Component {
-  
+
   constructor(props){
     super(props);
     this.state = {
       time_left: props.navigation.state.params.work_period * 60,
-      full_time: props.navigation.state.params.work_period * 60, 
-      full_break: props.navigation.state.params.break_period * 60,  
+      full_time: props.navigation.state.params.work_period * 60,
+      full_break: props.navigation.state.params.break_period * 60,
       work_mode: true
     }
     this.subtract_one = this.subtract_one.bind(this);
@@ -36,9 +36,9 @@ export default class ReminderScreen extends React.Component {
 
   title_text(mode){
      if (mode == true){
-        return "Get to work";
+        return "Work Time";
      }
-     return "Do 10 jumping jacks!";
+     return "Break Time: Do 10 jumping jacks!";
   }
 
   subtract_one(){
@@ -57,14 +57,14 @@ export default class ReminderScreen extends React.Component {
       time_left = this.state.time_left - 1;
       this.setState({time_left: time_left});
     }
-    
+
   }
 
   seconds_to_hms(seconds){
     m_remain = seconds % 3600;
     s = m_remain % 60;
-    return Math.floor(seconds / 3600).toString().padStart(2, "0") + ":" + Math.floor(m_remain / 60).toString().padStart(2, "0") + ":" + s.toString().padStart(2, "0");  
-    
+    return Math.floor(seconds / 3600).toString().padStart(2, "0") + ":" + Math.floor(m_remain / 60).toString().padStart(2, "0") + ":" + s.toString().padStart(2, "0");
+
   }
 
   render() {
