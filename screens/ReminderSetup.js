@@ -3,7 +3,7 @@ import { Platform, StyleSheet, Text, View, Button, Picker, TextInput, Keyboard, 
 export default class ProfileScreen extends React.Component {
   constructor(props){
     super(props);
-    this.state = {btype: "exercise", work_period: '', break_period: ''};
+    this.state = {btype: "exercise", work_period: '', break_period: '', sound: 'bell'};
     this.onChangeWorkingPeriod = this.onChangeWorkingPeriod.bind(this);
     this.onChangeBreakPeriod = this.onChangeBreakPeriod.bind(this);
   }
@@ -87,10 +87,26 @@ export default class ProfileScreen extends React.Component {
           <Picker.Item label="Dream" value="dream" />
         </Picker>
         </View>
+        <View style={styles.input_row}>
+          <Text style = {styles.input_text}>
+            Reminder Sound
+          </Text>
+
+          <Picker
+            selectedValue={this.state.sound}
+            style={{height: 50, width: '80%', flex: 1, borderColor: 'gray', borderWidth: 1}}
+            onValueChange={(itemValue, itemIndex) =>
+              this.setState({sound: itemValue})
+            }>
+            <Picker.Item label="Bell" value="bell" />
+            <Picker.Item label="Buzzer" value="buzzer" />
+            <Picker.Item label="Dream" value="dream" />
+          </Picker>
+        </View>
         <View style={styles.button_view}>
           <Button
             title="Set Reminder"
-            onPress={() => navigate('Reminder', {name: 'Jane', work_period: this.state.work_period, break_period: this.state.break_period})}
+            onPress={() => navigate('Reminder', {name: 'Jane', work_period: this.state.work_period, break_period: this.state.break_period, sound: this.state.sound})}
             style = {styles.button}
             color = "#4444f0"
           />

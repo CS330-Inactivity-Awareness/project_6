@@ -4,22 +4,22 @@ export default class HomeScreen extends React.Component {
 
   static navigationOptions = {
     title: 'Welcome',
+    headerStyle: {
+      backgroundColor: '#4444f0',
+    },
+    headerTintColor: '#fff'
   };
 
   render() {
     const {navigate} = this.props.navigation;
     return (
-      <View style = {styles.button_view}>
+      <View style = {styles.container}>
       <Button style = {styles.button}
         title="Create a Reminder"
         onPress={() => navigate('Profile', {name: 'Jane'})}
         color = "#4444f0"
       />
-<<<<<<< HEAD
       </View>
-
-=======
->>>>>>> a95ccf7c429aa73236c4a6d09489092083db87d1
     );
   }
 }
