@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, Button } from 'react-native';
+import { Platform, StyleSheet, Text, View, Button, Image } from 'react-native';
 import { Audio } from 'expo-av';
 export default class ReminderScreen extends React.Component {
 
@@ -11,6 +11,7 @@ export default class ReminderScreen extends React.Component {
       full_break: props.navigation.state.params.break_period * 60,
       work_mode: true,
       sound: props.navigation.state.params.sound,
+      break_type: props.navigation.state.params.btype,
     }
     this.subtract_one = this.subtract_one.bind(this);
   }
@@ -55,11 +56,40 @@ export default class ReminderScreen extends React.Component {
   }
 
   title_text(mode){
-     if (mode == true){
-        return "Work Time!";
+    if (mode == true){
+       return "Work Time!"
+   }
+    else if (this.state.break_type == "exercise" ) {
+      return "Do 10 Shoulder Rolls";
      }
-     return "Do 10 Jumping Jacks!";
+    else if (this.state.break_type == "free_time") {
+      return "Free Time!";
+   }
+    else if (this.state.break_type == "stretch") {
+      return "Stretch Your Legs";
   }
+  else if (this.state.break_type == "stand_up") {
+    return "Stand Up";
+}
+ }
+
+ display_image(curr_mode){
+  if (curr_mode == true){
+     return (require("../images/work_time.png"))
+   }
+  else if (this.state.break_type == "exercise" ) {
+    return (require("../images/shoulder_roll.jpg"))
+   }
+  else if (this.state.break_type == "free_time") {
+    return (require("../images/free_time.png"))
+  }
+  else if (this.state.break_type == "stretch") {
+    return (require("../images/leg_stretch.jpg"))
+  }
+  else if (this.state.break_type == "stand_up") {
+    return (require("../images/stand_up.png"))
+  }
+}
 
   subtract_one(){
     if (this.state.time_left == 1){
@@ -88,7 +118,7 @@ export default class ReminderScreen extends React.Component {
   }
 
   static navigationOptions = {
-    title: '',
+    title: 'Reminder',
     headerStyle: {
       backgroundColor: '#4444f0',
 
@@ -104,9 +134,14 @@ export default class ReminderScreen extends React.Component {
 	       <Text style = {styles.welcome}>
 	         {this.title_text(this.state.work_mode)}
 	       </Text>
-              <Text style = {styles.countdown}>
-                {this.seconds_to_hms(this.state.time_left)}
-              </Text>
+         <Image
+            style = {styles.imageStyle}
+            source = {this.display_image(this.state.work_mode)}
+         />
+
+        <Text style = {styles.countdown}>
+          {this.seconds_to_hms(this.state.time_left)}
+        </Text>
         <Button
           title="Cancel Reminder"
           onPress={() => navigate('Home', {name: 'Jane'})}
@@ -133,7 +168,13 @@ const styles = StyleSheet.create({
   countdown: {
     fontSize: 50,
     textAlign: 'center',
-  
+
+  },
+  imageStyle:{
+    height: 150,
+    width: 150,
+    alignItems: 'center',
+    left: 105,
   },
   instructions: {
     textAlign: 'center',

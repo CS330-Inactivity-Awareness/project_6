@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, Button } from 'react-native';
+import { Platform, StyleSheet, Text, View, Button, Image } from 'react-native';
 export default class HomeScreen extends React.Component {
 
   static navigationOptions = {
@@ -14,6 +14,13 @@ export default class HomeScreen extends React.Component {
     const {navigate} = this.props.navigation;
     return (
       <View style = {styles.container}>
+      <Text style = {styles.welcome}>
+        Tap "Create a Reminder" to begin!
+      </Text>
+      <Image
+        style = {styles.imageStyle}
+        source = {require("../images/reminder_ribbon.png")}
+      />
       <Button style = {styles.button}
         title="Create a Reminder"
         onPress={() => navigate('Profile', {name: 'Jane'})}
@@ -35,6 +42,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
+  },
+  imageStyle:{
+    height: 150,
+    width: 150,
+    alignItems: 'center',
+    left: 105,
   },
   instructions: {
     textAlign: 'center',
