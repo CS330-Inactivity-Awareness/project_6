@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View, Button, Picker, TextInput, Keyboard, TouchableWithoutFeedback} from 'react-native';
 import ReminderScreen from './ReminderScreen';
-export default class ProfileScreen extends React.Component {
+export default class EditReminder extends React.Component {
   constructor(props){
     super(props);
     this.appState = props.navigation.state.params.appState;
-    this.state = {btype: "exercise", work_period: '20', break_period: '1', sound: 'bell'};
+    this.index = props.navigation.state.params.index;
+    this.state = this.appState.persistent.reminders[this.index];
     this.onChangeWorkingPeriod = this.onChangeWorkingPeriod.bind(this);
     this.onChangeBreakPeriod = this.onChangeBreakPeriod.bind(this);
     this.saveReminder = this.saveReminder.bind(this);
@@ -26,7 +27,7 @@ export default class ProfileScreen extends React.Component {
       this.appState.persistent.reminders = [reminder];
     }
     else {
-      this.appState.persistent.reminders.push(reminder);
+      this.appState.persistent.reminders[this.index] = reminder;
     }
     this.appState.save();
   
@@ -35,8 +36,15 @@ export default class ProfileScreen extends React.Component {
 
   startReminder(){
     const {navigate} = this.props.navigation;
-    var reminder = {btype: this.state.btype, work_period: this.state.work_period, break_period: this.state.break_period, sound: this.state.sound};
-    navigate('Reminder')
+    var reminder = {appState: this.appstate, btype: this.state.btype, work_period: this.state.work_period, break_period: this.state.break_period, sound: this.state.sound};
+    navigate('Reminder', reminder)
+  }
+
+  deleteReminder(){
+      const {navigate} = this.props.navigation;
+      this.appState.persistent.reminders.splice(this.index, 1);
+      this.appState.save();
+      navigate('Home', {appState: this.appState});
   }
 
   static navigationOptions = {
@@ -124,6 +132,14 @@ export default class ProfileScreen extends React.Component {
             onPress={() => this.saveReminder()}
             style = {styles.button}
             color = "#4444f0"
+          />
+        </View>
+        <View style={styles.button_view}>
+          <Button 
+            title="Delete Reminder"
+            onPress={() => this.deleteReminder()}
+            style = {styles.button}
+            color = "#ff0000"
           />
         </View>
       </View>

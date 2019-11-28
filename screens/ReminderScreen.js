@@ -13,6 +13,7 @@ export default class ReminderScreen extends React.Component {
       sound: props.navigation.state.params.sound,
     }
     this.subtract_one = this.subtract_one.bind(this);
+    this.appState = props.navigation.state.params.state;
   }
   static navigationOptions = {
     headerLeft: null
