@@ -48,7 +48,7 @@ export default class EditReminder extends React.Component {
   }
 
   static navigationOptions = {
-    title: 'Reminder Creation',
+    title: 'Reminder Edit',
     headerStyle: {
       backgroundColor: '#4444f0',
 

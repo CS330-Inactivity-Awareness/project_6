@@ -41,12 +41,20 @@ export default class HomeScreen extends React.Component {
     const {navigate} = this.props.navigation;
     return (
       <View style = {styles.container}>
+
+        
+        <Text style = {styles.welcome}>
+          Tap "Create a Reminder" to begin!
+        </Text>
+        <Image
+          style = {styles.imageStyle}
+          source = {require("../images/reminder_ribbon.png")}
+        />
         <Button style = {styles.button}
-          title="Create Reminder"
+          title="Create a Reminder"
           onPress={() => navigate('Profile', {appState: this.appState})}
           color = "#4444f0"
         />
-
         <ReminderList 
           data={this.appState.persistent.reminders}
           selectReminder={this.selectReminder}
@@ -118,6 +126,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
+  },
+  imageStyle:{
+    height: 150,
+    width: 150,
+    alignItems: 'center',
+    left: 105,
   },
   instructions: {
     textAlign: 'center',
