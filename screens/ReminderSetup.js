@@ -35,8 +35,8 @@ export default class ProfileScreen extends React.Component {
 
   startReminder(){
     const {navigate} = this.props.navigation;
-    var reminder = {btype: this.state.btype, work_period: this.state.work_period, break_period: this.state.break_period, sound: this.state.sound};
-    navigate('Reminder')
+    var reminder = {appState: this.appState, btype: this.state.btype, work_period: this.state.work_period, break_period: this.state.break_period, sound: this.state.sound};
+    navigate('Reminder', reminder)
   }
 
   static navigationOptions = {
