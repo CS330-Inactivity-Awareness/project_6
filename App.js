@@ -5,6 +5,8 @@ import {createStackNavigator} from 'react-navigation-stack';
 import HomeScreen from './screens/HomeScreen';
 import ReminderSetup from './screens/ReminderSetup';
 import ReminderScreen from './screens/ReminderScreen';
+import EditReminder from './screens/EditReminder'
+import {AsyncStorage } from 'react-native';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -42,12 +44,46 @@ const styles = StyleSheet.create({
   },
 });*/
 
+class ApplicationState {
+  constructor(){
+    this.active = {};
+    this.persistent = {};
+    this.save = this.save.bind(this);
+    this.load = this.load.bind(this);
+  }
 
+  async save(){
+    //console.warn(JSON.stringify(this.persistent));
+    try{
+      await AsyncStorage.setItem('@cs330projectStorage', JSON.stringify(this.persistent));
+    } catch(e){
+      // do nothing
+      throw e;
+    }
+  }
+
+  async load(component) {
+    
+    try {
+      var data = await AsyncStorage.getItem('@cs330projectStorage');
+      this.persistent = await JSON.parse(data);
+      component.setState({appState: await this});
+
+    } catch(e) {
+      throw e;
+    }
+  }
+}
+
+var appState = new ApplicationState();
+console.log(appState.persistent);
+setInterval(appState.save, 5000)
 
 const MainNavigator = createStackNavigator({
-  Home: {screen: HomeScreen},
-  Profile: {screen: ReminderSetup},
-  Reminder: {screen: ReminderScreen}
+  Home: {screen: HomeScreen, params: {appState: appState}},
+  Profile: {screen: ReminderSetup, params: {appState: appState}},
+  Reminder: {screen: ReminderScreen, params: {appState: appState}},
+  Edit: {screen: EditReminder, params: {appState: appState}}
   
 });
 

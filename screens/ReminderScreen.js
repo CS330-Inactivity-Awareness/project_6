@@ -14,6 +14,7 @@ export default class ReminderScreen extends React.Component {
       break_type: props.navigation.state.params.btype,
     }
     this.subtract_one = this.subtract_one.bind(this);
+    this.appState = props.navigation.state.params.state;
   }
   static navigationOptions = {
     headerLeft: null
