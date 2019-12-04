@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View, Button, Picker, TextInput, Keyboard, TouchableWithoutFeedback} from 'react-native';
 import ReminderScreen from './ReminderScreen';
+import StyleableButton from '../StyleableButton'
 export default class EditReminder extends React.Component {
   constructor(props){
     super(props);
@@ -119,27 +120,30 @@ export default class EditReminder extends React.Component {
         </Picker>
         </View>
         <View style={styles.button_view}>
-          <Button
+          <StyleableButton
             title="Start Reminder"
             onPress={() => navigate('Reminder', {name: 'Jane', work_period: this.state.work_period, break_period: this.state.break_period, sound: this.state.sound})}
             style = {styles.button}
             color = "#4444f0"
+            textStyle = {styles.buttonText}
           />
         </View>
         <View style={styles.button_view}>
-          <Button
+          <StyleableButton
             title="Save Reminder"
             onPress={() => this.saveReminder()}
             style = {styles.button}
             color = "#4444f0"
+            textStyle = {styles.buttonText}
           />
         </View>
         <View style={styles.button_view}>
-          <Button 
+          <StyleableButton 
             title="Delete Reminder"
             onPress={() => this.deleteReminder()}
-            style = {styles.button}
+            style = {styles.redButton}
             color = "#ff0000"
+            textStyle = {styles.buttonText}
           />
         </View>
       </View>
@@ -152,7 +156,8 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
     flex: 1,
-    justifyContent: 'space-evenly'
+    justifyContent: 'space-evenly',
+    padding: '3%'
   },
 
   input_text: {
@@ -174,8 +179,30 @@ const styles = StyleSheet.create({
 
   button: {
     textAlign: 'center',
-    color: '#4444f0',
-    height: '100%'
+    backgroundColor: '#4444f0',
+    marginVertical: '4%',
+    borderWidth: 2,
+    fontSize: 20,
+    borderRadius: 50,
+    borderColor: '#CCCCCC' 
+  },
+  
+  redButton: {
+    textAlign: 'center',
+    backgroundColor: '#ff0000',
+    marginVertical: '4%',
+    borderWidth: 2,
+    fontSize: 20,
+    borderRadius: 50,
+    borderColor: '#CCCCCC' 
+  },
+
+  buttonText:{
+    fontSize: 16,
+    padding: '5%',
+    textAlign: 'center',
+    color: "#ffffff",
+    fontWeight: '900'
   },
 
   input_row: {
