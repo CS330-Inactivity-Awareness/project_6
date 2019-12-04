@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View, Button, Image } from 'react-native';
 import { Audio } from 'expo-av';
+import StyleableButton from '../StyleableButton'
+
 export default class ReminderScreen extends React.Component {
 
   constructor(props){
@@ -143,11 +145,12 @@ export default class ReminderScreen extends React.Component {
         <Text style = {styles.countdown}>
           {this.seconds_to_hms(this.state.time_left)}
         </Text>
-        <Button
+        <StyleableButton
           title="Cancel Reminder"
           onPress={() => navigate('Home', {name: 'Jane'})}
           style = {styles.button}
           color = "#4444f0"
+          textStyle = {styles.buttonText}
         />
       </View>
     );
@@ -160,6 +163,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+    padding: '3%'
   },
   welcome: {
     fontSize: 30,
@@ -211,9 +215,21 @@ const styles = StyleSheet.create({
 
   button: {
     textAlign: 'center',
-    color: '#4444f0',
-    height: '100%'
+    backgroundColor: '#4444f0',
+    marginVertical: '4%',
+    borderWidth: 2,
+    fontSize: 20,
+    borderRadius: 50,
+    borderColor: '#CCCCCC' 
   },
+
+  buttonText:{
+    fontSize: 16,
+    padding: '5%',
+    textAlign: 'center',
+    color: "#ffffff",
+    fontWeight: '900'
+  },  
 
   input_row: {
     flex: 1,

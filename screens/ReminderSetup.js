@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View, Button, Picker, TextInput, Keyboard, TouchableWithoutFeedback} from 'react-native';
 import ReminderScreen from './ReminderScreen';
+import StyleableButton from '../StyleableButton'
 export default class ProfileScreen extends React.Component {
   constructor(props){
     super(props);
@@ -35,8 +36,8 @@ export default class ProfileScreen extends React.Component {
 
   startReminder(){
     const {navigate} = this.props.navigation;
-    var reminder = {btype: this.state.btype, work_period: this.state.work_period, break_period: this.state.break_period, sound: this.state.sound};
-    navigate('Reminder')
+    var reminder = {appState: this.appState, btype: this.state.btype, work_period: this.state.work_period, break_period: this.state.break_period, sound: this.state.sound};
+    navigate('Reminder', reminder)
   }
 
   static navigationOptions = {
@@ -114,19 +115,21 @@ export default class ProfileScreen extends React.Component {
           </Picker>
         </View>
         <View style={styles.button_view}>
-          <Button
+          <StyleableButton
             title="Set Reminder"
             onPress={() => navigate('Reminder', {appState: this.appState, work_period: this.state.work_period, break_period: this.state.break_period, sound: this.state.sound, btype: this.state.btype})}
             style = {styles.button}
             color = "#4444f0"
+            textStyle = {styles.buttonText}
           />
         </View>
         <View style={styles.button_view}>
-          <Button
+          <StyleableButton
             title="Save Reminder"
             onPress={() => this.saveReminder()}
             style = {styles.button}
             color = "#4444f0"
+            textStyle = {styles.buttonText}
           />
         </View>
       </View>
@@ -139,7 +142,8 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
     flex: 1,
-    justifyContent: 'space-evenly'
+    justifyContent: 'space-evenly',
+    padding: '3%'
   },
 
   input_text: {
@@ -161,8 +165,20 @@ const styles = StyleSheet.create({
 
   button: {
     textAlign: 'center',
-    color: '#4444f0',
-    height: '100%'
+    backgroundColor: '#4444f0',
+    marginVertical: '4%',
+    borderWidth: 2,
+    fontSize: 20,
+    borderRadius: 50,
+    borderColor: '#CCCCCC' 
+  },
+
+  buttonText:{
+    fontSize: 16,
+    padding: '5%',
+    textAlign: 'center',
+    color: "#ffffff",
+    fontWeight: '900'
   },
 
   input_row: {
