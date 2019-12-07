@@ -12,6 +12,9 @@
       "ios",
       "android",
       "web"
-    ]
+    ],
+    "android": {
+      "package": "com.cs330.sandaawareness"
+    }
   }
 }

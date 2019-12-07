@@ -27,7 +27,7 @@ export default class HomeScreen extends React.Component {
 
   async componentWillMount(){
     await this.appState.load(this);
-    this.setState({appState: this.appState})
+    //this.setState({appState: this.appState})
   }
 
   selectReminder(index){
@@ -132,7 +132,6 @@ class ReminderList extends React.Component {
         )}
       />
     )
-    
   }
 }
 
